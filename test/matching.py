@@ -18,14 +18,14 @@ def checkForPair(loc):
 
 patterns = [
     # [name, path, threshold, color]
-    ["one","./patterns/one.png", 0.80, (0,0,0)],
-    ["two","./patterns/two.png", 0.8, (255,0,0)],
-    ["three","./patterns/three.png", 0.75, (255,255,0)],
-    ["four","./patterns/four.png", 0.75, (255,255,255)],
-    ["five","./patterns/five.png", 0.65, (0,255,255)],
-    ["six","./patterns/six.png", 0.8, (0,0,255)],
-    ["seven","./patterns/seven.png", 0.65, (127,127,127)],
-    ["eight","./patterns/eight.png", 0.55, (45,100,45)],
+    ["one","./patterns/capchat/one.png", 0.80, (0,0,0)],
+    ["two","./patterns/capchat/two.png", 0.8, (255,0,0)],
+    ["three","./patterns/capchat/three.png", 0.75, (255,255,0)],
+    ["four","./patterns/capchat/four.png", 0.75, (255,255,255)],
+    ["five","./patterns/capchat/five.png", 0.65, (0,255,255)],
+    ["six","./patterns/capchat/six.png", 0.8, (0,0,255)],
+    ["seven","./patterns/capchat/seven.png", 0.65, (127,127,127)],
+    ["eight","./patterns/capchat/eight.png", 0.55, (45,100,45)],
 ]
 
 img_rgb = cv2.imread('./captures/cap7.jpg')
