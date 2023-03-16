@@ -2,7 +2,7 @@ import cv2
 import numpy as nm
 
 def checkIfUpper(pos):
-    y = 985 - (pos[0]   * 0.507813)
+    y = 1080 - (pos[0]   * 0.5625)
     if(pos[1] < y):
         return True
     else:
@@ -10,7 +10,7 @@ def checkIfUpper(pos):
 
 
 def checkIfUnder(pos):
-    y = 1110.4 - (pos[0] * 0.508021)
+    y = 1080 - (pos[0] * 0.5625)
     if(pos[1] > y):
         return True
     else:
@@ -36,6 +36,8 @@ def findMatch(img_rgb, patterns):
                     first = pt
                 current = pt
             if(checkIfUpper(first) and checkIfUnder(current)):
+                print(first)
+                print(current)
                 return (index,getMiddle(first,template),getMiddle(current,template))      
                
         index+=1

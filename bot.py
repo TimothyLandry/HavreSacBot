@@ -19,7 +19,7 @@ patterns = [
     ["eight","./patterns/eight.png"],
 ]
 
-img_rgb = cv2.imread('./captures/full_cap1.png')
+img_rgb = cv2.imread('./captures/full_cap2.png')
 
 matchs = []
 while len(matchs)<3:
@@ -39,8 +39,7 @@ while len(matchs)<3:
 
     
 w, h = img_rgb.shape[:-1]
-cv2.line(img_rgb,(0,990),(h,15), (255,255,255), 2)
-cv2.line(img_rgb,(50,w),(h,130), (255,255,255), 2)
+cv2.line(img_rgb,(0,w),(h,0), (255,255,255), 2)
 
 
 
