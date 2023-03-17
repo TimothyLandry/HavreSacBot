@@ -1,58 +1,65 @@
 from time import sleep
 from functions.clickLogic import rightClick, leftClick
 from functions.keyLogic import keyDown, keyUp, keyPress
+from functions.templateLogic import TemplateLogic
 
-def interact(point):
-    rightClick(point)
+class RecoltLogic:
+    def __init__(self, DEBUG, RECOLT_TYPE, KEYBIND, SHIFT, CTRL, templatePath, threshold):
+        self.KEYBIND = KEYBIND
+        self.SHIFT = SHIFT
+        self.CTRL = CTRL
+        self.RECOLT_TYPE = RECOLT_TYPE
+        self.templateLogic = TemplateLogic(DEBUG, templatePath, threshold)
 
-def cut(point):
-    leftClick((
-        point[0],
-        point[1]-100
-    ))
-    sleep(3)
+    def interact(self, point):
+        rightClick(point)
 
-def seed(point):
-    leftClick((
-        point[0]-95,
-        point[1]-75
-    ))
-    sleep(3)
-    return
+    def cut(self, point):
+        leftClick((
+            point[0],
+            point[1]-100
+        ))
+        sleep(3)
 
-def replant(point, KEYBIND, SHIFT, CTRL):
-    if(SHIFT):
-        keyDown('shift')
-    if(CTRL):
-        keyDown('ctrl')
+    def seed(self, point):
+        leftClick((
+            point[0]-95,
+            point[1]-75
+        ))
+        sleep(3)
+        return
 
-    sleep(0.5)
-    keyPress(KEYBIND)
-    sleep(0.5)
+    def replant(self, point):
+        if(self.SHIFT):
+            keyDown('shift')
+        if(self.CTRL):
+            keyDown('ctrl')
 
-    if(SHIFT):
-        keyUp('shift')
-    if(CTRL):
-        keyUp('ctrl')
+        sleep(0.5)
+        keyPress(self.KEYBIND)
+        sleep(0.5)
 
-    sleep(0.5)
-    plantpoint = (
-        point[0],
-        point[1]+30
-    )
-    leftClick(plantpoint)
-    sleep(3)
-    # Unselect item
-    rightClick(plantpoint)
+        if(self.SHIFT):
+            keyUp('shift')
+        if(self.CTRL):
+            keyUp('ctrl')
+
+        sleep(0.5)
+        plantpoint = (
+            point[0],
+            point[1]+30
+        )
+        leftClick(plantpoint)
+        sleep(3)
+        # Unselect item
+        rightClick(plantpoint)
 
 
-
-
-def recolt(point, RECOLT_TYPE, KEYBIND, SHIFT, CTRL):
-    interact(point)
-    sleep(1)
-    if(RECOLT_TYPE == "SEED"):
-        seed(point)
-    if(RECOLT_TYPE == "RESOURCE"):
-        cut(point)
-        replant(point, KEYBIND, SHIFT, CTRL)
+    def recolt(self, point):
+        self.interact(point)
+        sleep(1)
+        if(self.RECOLT_TYPE == "SEED"):
+            self.seed(point)
+        if(self.RECOLT_TYPE == "RESOURCE"):
+            self.cut(point)
+            self.replant(point, self.KEYBIND, self.SHIFT, self.CTRL)
