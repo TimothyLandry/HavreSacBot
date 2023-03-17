@@ -15,6 +15,7 @@ class HarvestLogic:
 
     def interact(self, point):
         rightClick(point)
+        sleep(0.5)
 
     def cut(self, point):
         p = self.cutTemplateLogic.getNearestTemplate(point[0]-100, point[1]-150, point[0]+100, point[1]+50)
@@ -59,7 +60,7 @@ class HarvestLogic:
 
     def harvest(self, point):
         self.interact(point)
-        sleep(1)
+        
         if(self.HARVEST_TYPE == "SEED"):
             self.seed(point)
         if(self.HARVEST_TYPE == "RESOURCE"):
