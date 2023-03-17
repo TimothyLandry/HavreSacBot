@@ -16,7 +16,7 @@ p = ["croton","./patterns/herboriste/croton.png", 0.96, (255,255,255)]
 
 # Init Logics
 harvestLogic = HarvestLogic(DEBUG, HARVEST_TYPE, KEYBIND, SHIFT, CTRL)
-templateLogic = TemplateLogic(DEBUG, "./patterns/herboriste/croton.png", 0.9)
+templateLogic = TemplateLogic(DEBUG, "./patterns/herboriste/irisse.png", 0.9)
 
 # Coordinates for 400 x 350 around character
 x1=750
