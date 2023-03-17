@@ -1,12 +1,12 @@
 import numpy as nm
 import cv2
 
-from functions.recoltLogic import RecoltLogic
+from functions.harvestLogic import HarvestLogic
 from functions.templateLogic import TemplateLogic
 from functions.capchaLogic import checkForFight
 
-DEBUG = True
-RECOLT_TYPE = "SEED" # "RESOURCE" "SEED"
+DEBUG = False
+HARVEST_TYPE = "SEED" # "RESOURCE" "SEED"
 KEYBIND = "3"
 SHIFT = True
 CTRL = False
@@ -15,7 +15,7 @@ p = ["croton","./patterns/herboriste/croton.png", 0.96, (255,255,255)]
 # pazinclou
 
 # Init Logics
-recoltLogic = RecoltLogic(DEBUG, RECOLT_TYPE, KEYBIND, SHIFT, CTRL)
+harvestLogic = HarvestLogic(DEBUG, HARVEST_TYPE, KEYBIND, SHIFT, CTRL)
 templateLogic = TemplateLogic(DEBUG, "./patterns/herboriste/croton.png", 0.9)
 
 # Coordinates for 400 x 350 around character
@@ -35,5 +35,5 @@ while True:
     # Template Logic
     resource = templateLogic.getNearestTemplate(x1,y1,x2,y2)
     if(resource):
-        # Recolt logic
-        recoltLogic.recolt(resource)
+        # Harvest logic
+        harvestLogic.harvest(resource)
