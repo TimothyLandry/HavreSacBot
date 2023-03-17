@@ -1,7 +1,7 @@
 from time import sleep
-from functions.clickLogic import rightClick, leftClick
-from functions.keyLogic import keyDown, keyUp, keyPress
-from functions.templateLogic import TemplateLogic
+from logic.clickLogic import rightClick, leftClick
+from logic.keyLogic import keyDown, keyUp, keyPress
+from logic.templateLogic import TemplateLogic
 
 class HarvestLogic:
     def __init__(self, DEBUG, HARVEST_TYPE, KEYBIND, SHIFT, CTRL):

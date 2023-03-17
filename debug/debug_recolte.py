@@ -1,9 +1,9 @@
 import numpy as nm
 import cv2
 
-from functions.pointLogic import purgeTemplateFindings, findNearestPoint, convertPoint
-from functions.screenshotLogic import grabRGBImage
-from functions.clickLogic import rightClick
+from logic.pointLogic import purgeTemplateFindings, findNearestPoint, convertPoint
+from logic.screenshotLogic import grabRGBImage
+from logic.clickLogic import rightClick
 
 patterns = [
     ["croton","./patterns/herboriste/croton.png", 0.96, (255,255,255)],

@@ -29,6 +29,13 @@ class TemplateLogic:
         self.template = cv2.imread(self.templatePath)
         self.w, self.h = self.template.shape[:-1]
 
+    def lookForTemplateInImg(self, img):
+        self.img_rgb = img
+        res = cv2.matchTemplate(self.img_rgb, self.template, cv2.TM_CCOEFF_NORMED)
+        loc = nm.where(res >= self.threshold)
+        points = purgeTemplateFindings(list(zip(*loc[::-1])))
+        return points
+    
     def lookForTemplate(self, x1, y1, x2, y2):
         self.img_rgb = grabRGBImage(x1, y1, x2, y2)
 
