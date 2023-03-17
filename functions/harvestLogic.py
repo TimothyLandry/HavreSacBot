@@ -3,18 +3,19 @@ from functions.clickLogic import rightClick, leftClick
 from functions.keyLogic import keyDown, keyUp, keyPress
 from functions.templateLogic import TemplateLogic
 
-class RecoltLogic:
-    def __init__(self, DEBUG, RECOLT_TYPE, KEYBIND, SHIFT, CTRL):
+class HarvestLogic:
+    def __init__(self, DEBUG, HARVEST_TYPE, KEYBIND, SHIFT, CTRL):
         self.KEYBIND = KEYBIND
         self.SHIFT = SHIFT
         self.CTRL = CTRL
-        self.RECOLT_TYPE = RECOLT_TYPE
+        self.HARVEST_TYPE = HARVEST_TYPE
 
-        self.cutTemplateLogic = TemplateLogic(DEBUG, "./patterns/recolt/resource1.png", 0.9)
-        self.seedTemplateLogic = TemplateLogic(DEBUG, "./patterns/recolt/seed.png", 0.9)
+        self.cutTemplateLogic = TemplateLogic(DEBUG, "./patterns/harvest/resource1.png", 0.9)
+        self.seedTemplateLogic = TemplateLogic(DEBUG, "./patterns/harvest/seed.png", 0.9)
 
     def interact(self, point):
         rightClick(point)
+        sleep(0.5)
 
     def cut(self, point):
         p = self.cutTemplateLogic.getNearestTemplate(point[0]-100, point[1]-150, point[0]+100, point[1]+50)
@@ -57,11 +58,11 @@ class RecoltLogic:
         rightClick(plantpoint)
 
 
-    def recolt(self, point):
+    def harvest(self, point):
         self.interact(point)
-        sleep(1)
-        if(self.RECOLT_TYPE == "SEED"):
+        
+        if(self.HARVEST_TYPE == "SEED"):
             self.seed(point)
-        if(self.RECOLT_TYPE == "RESOURCE"):
+        if(self.HARVEST_TYPE == "RESOURCE"):
             self.cut(point)
             #self.replant(point)
