@@ -18,8 +18,9 @@ class RecoltLogic:
 
     def cut(self, point):
         p = self.cutTemplateLogic.getNearestTemplate(point[0]-100, point[1]-150, point[0]+100, point[1]+50)
-        leftClick(p)
-        sleep(3)
+        if(p):
+            leftClick(p)
+            sleep(3)
 
     def seed(self, point):
         p = self.seedTemplateLogic.getNearestTemplate(point[0]-100, point[1]-150, point[0]+100, point[1]+50)

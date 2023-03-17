@@ -12,10 +12,11 @@ SHIFT = True
 CTRL = False
 
 p = ["croton","./patterns/herboriste/croton.png", 0.96, (255,255,255)]
+# pazinclou
 
 # Init Logics
 recoltLogic = RecoltLogic(DEBUG, RECOLT_TYPE, KEYBIND, SHIFT, CTRL)
-templateLogic = TemplateLogic(DEBUG, "./patterns/herboriste/croton.png", 0.96)
+templateLogic = TemplateLogic(DEBUG, "./patterns/herboriste/croton.png", 0.9)
 
 # Coordinates for 400 x 350 around character
 x1=750
@@ -26,14 +27,13 @@ y2=700
 #######################
 # Loop
 #######################
-#while True:
-if(checkForFight()):
-    print("\nCAPCHAT FOUND\n")
-    exit
-    #break
+while True:
+    if(checkForFight()):
+        print("\nCAPCHAT FOUND\n")
+        break
 
-# Template Logic
-resource = templateLogic.getNearestTemplate(x1,y1,x2,y2)
-
-# Recolt logic
-recoltLogic.recolt(resource)
+    # Template Logic
+    resource = templateLogic.getNearestTemplate(x1,y1,x2,y2)
+    if(resource):
+        # Recolt logic
+        recoltLogic.recolt(resource)
