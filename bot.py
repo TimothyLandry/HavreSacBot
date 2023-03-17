@@ -1,53 +1,39 @@
+import numpy as nm
 import cv2
-from PIL import ImageGrab
 
-from functions.findMatch import findMatch
+from functions.harvestLogic import HarvestLogic
+from functions.templateLogic import TemplateLogic
+from functions.capchaLogic import checkForFight
 
-#cap = ImageGrab.grab(bbox =(x1, y1, x2, y2))
-#cap.save('debug.jpg')
+DEBUG = False
+HARVEST_TYPE = "SEED" # "RESOURCE" "SEED"
+KEYBIND = "3"
+SHIFT = True
+CTRL = False
 
+p = ["croton","./patterns/herboriste/croton.png", 0.96, (255,255,255)]
+# pazinclou
 
-patterns = [
-    # [name, path, threshold, color]
-    ["one","./patterns/one.png"],
-    ["two","./patterns/two.png"],
-    ["three","./patterns/three.png"],
-    ["four","./patterns/four.png"],
-    ["five","./patterns/five.png"],
-    ["six","./patterns/six.png"],
-    ["seven","./patterns/seven.png"],
-    ["eight","./patterns/eight.png"],
-]
+# Init Logics
+harvestLogic = HarvestLogic(DEBUG, HARVEST_TYPE, KEYBIND, SHIFT, CTRL)
+templateLogic = TemplateLogic(DEBUG, "./patterns/herboriste/irisse.png", 0.95)
 
-img_rgb = cv2.imread('./captures/full_cap2.png')
+# Coordinates for 400 x 350 around character
+x1=750
+y1=350
+x2=1150
+y2=700
 
-matchs = []
-while len(matchs)<3:
-    if(len(matchs) == 0):
-        color = (0,0,0) # noir
-    elif(len(matchs)==1):
-        color = (0,255,0) # vert
-    else:
-        color = (255,255,255) # blanc
+#######################
+# Loop
+#######################
+while True:
+    if(checkForFight()):
+        print("\nCAPCHAT FOUND\n")
+        break
 
-    m = findMatch(img_rgb, patterns)
-    matchs.append(m)
-    patterns.pop(m[0])
-    cv2.rectangle(img_rgb, (m[1][0],m[1][1]), (m[1][0] + 25, m[1][1] + 25), color, 2)
-    cv2.rectangle(img_rgb, (m[2][0],m[2][1]), (m[2][0] + 25, m[2][1] + 25), color, 2)
-
-
-    
-w, h = img_rgb.shape[:-1]
-cv2.line(img_rgb,(0,w),(h,0), (255,255,255), 2)
-
-
-
-
-
-                    
-                    
-
-
-
-cv2.imwrite('result.png', img_rgb)
+    # Template Logic
+    resource = templateLogic.getNearestTemplate(x1,y1,x2,y2)
+    if(resource):
+        # Harvest logic
+        harvestLogic.harvest(resource)
