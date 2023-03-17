@@ -9,6 +9,7 @@ class TemplateLogic:
     def __init__(self, DEBUG, templatePath, threshold):
         self.templatePath = templatePath
         self.threshold = threshold
+        self.initialThreshold = threshold
         self.DEBUG = DEBUG
         self.loadTemplate()
 
@@ -17,6 +18,12 @@ class TemplateLogic:
 
     def getThreshold(self):
         return self.threshold
+    
+    def decreaseThreshold(self, n):
+        self.threshold -= n 
+
+    def resetThreshold(self):
+        self.threshold = self.initialThreshold
 
     def loadTemplate(self):
         self.template = cv2.imread(self.templatePath)
