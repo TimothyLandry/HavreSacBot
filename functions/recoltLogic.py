@@ -4,29 +4,30 @@ from functions.keyLogic import keyDown, keyUp, keyPress
 from functions.templateLogic import TemplateLogic
 
 class RecoltLogic:
-    def __init__(self, DEBUG, RECOLT_TYPE, KEYBIND, SHIFT, CTRL, templatePath, threshold):
+    def __init__(self, DEBUG, RECOLT_TYPE, KEYBIND, SHIFT, CTRL):
         self.KEYBIND = KEYBIND
         self.SHIFT = SHIFT
         self.CTRL = CTRL
         self.RECOLT_TYPE = RECOLT_TYPE
-        self.templateLogic = TemplateLogic(DEBUG, templatePath, threshold)
+
+        self.cutTemplateLogic = TemplateLogic(DEBUG, "./patterns/recolt/resource1.png", 0.9)
+        self.seedTemplateLogic = TemplateLogic(DEBUG, "./patterns/recolt/seed.png", 0.9)
 
     def interact(self, point):
         rightClick(point)
 
     def cut(self, point):
-        leftClick((
-            point[0],
-            point[1]-100
-        ))
+        p = self.cutTemplateLogic.getNearestTemplate(point[0]-100, point[1]-150, point[0]+100, point[1]+50)
+        leftClick(p)
         sleep(3)
 
     def seed(self, point):
-        leftClick((
-            point[0]-95,
-            point[1]-75
-        ))
-        sleep(3)
+        p = self.seedTemplateLogic.getNearestTemplate(point[0]-100, point[1]-150, point[0]+100, point[1]+50)
+        if(p == None):
+            self.cut(point)
+        else:
+            leftClick(p)
+            sleep(3)
         return
 
     def replant(self, point):
@@ -62,4 +63,4 @@ class RecoltLogic:
             self.seed(point)
         if(self.RECOLT_TYPE == "RESOURCE"):
             self.cut(point)
-            self.replant(point, self.KEYBIND, self.SHIFT, self.CTRL)
+            #self.replant(point)

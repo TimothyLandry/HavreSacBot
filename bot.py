@@ -5,7 +5,7 @@ from functions.recoltLogic import RecoltLogic
 from functions.templateLogic import TemplateLogic
 from functions.capchaLogic import checkForFight
 
-DEBUG = False
+DEBUG = True
 RECOLT_TYPE = "SEED" # "RESOURCE" "SEED"
 KEYBIND = "3"
 SHIFT = True
@@ -14,7 +14,7 @@ CTRL = False
 p = ["croton","./patterns/herboriste/croton.png", 0.96, (255,255,255)]
 
 # Init Logics
-recoltLogic = RecoltLogic(DEBUG, RECOLT_TYPE, KEYBIND, SHIFT, CTRL, p[1], p[2])
+recoltLogic = RecoltLogic(DEBUG, RECOLT_TYPE, KEYBIND, SHIFT, CTRL)
 templateLogic = TemplateLogic(DEBUG, "./patterns/herboriste/croton.png", 0.96)
 
 # Coordinates for 400 x 350 around character

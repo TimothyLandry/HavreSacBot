@@ -27,6 +27,9 @@ class TemplateLogic:
         
     def getNearestTemplate(self,  x1, y1, x2, y2):
         points = self.lookForTemplate(x1,y1,x2,y2)
+        if(points == []):
+            return None
+
         # Finding nearest point compared to the character (approximate)
         x, y = self.img_rgb.shape[:-1]
         middle = (x/2,y/2)
