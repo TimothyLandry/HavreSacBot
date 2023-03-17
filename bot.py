@@ -4,6 +4,7 @@ import cv2
 from functions.pointLogic import purgeTemplateFindings, findNearestPoint, convertPoint, getMiddlePoint
 from functions.screenshotLogic import grabRGBImage
 from functions.recoltLogic import recolt
+from functions.capchaLogic import checkForFight
 
 DEBUG = False
 RECOLT_TYPE = "SEED" # "RESOURCE" "SEED"
@@ -27,6 +28,10 @@ y2=700
 # Loop
 #######################
 while True:
+    if(checkForFight()):
+        print("\nCAPCHAT FOUND\n")
+        break
+
     img_rgb = grabRGBImage(x1, y1, x2, y2)
 
     # Template matching
@@ -38,7 +43,7 @@ while True:
 
     # Finding nearest point compared to the character (approximate)
     x, y = img_rgb.shape[:-1]
-    middle = (x/2,y/3)
+    middle = (x/2,y/2)
     nearest = findNearestPoint(middle, points)
 
     # DEBUG - Template rectangle
